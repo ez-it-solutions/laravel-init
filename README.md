@@ -33,6 +33,43 @@ This utility combines multiple essential functions into a single, cohesive packa
 
 </div>
 
+### 📚 Help & Documentation
+
+```bash
+# Get help and documentation for all commands
+php artisan app:help
+
+# Get help for a specific command
+php artisan app:help app:init
+
+# List all available commands
+php artisan app:help --list
+
+# Show usage examples
+php artisan app:help app:deploy --examples
+
+# Start interactive help mode
+php artisan app:help --interactive
+
+# Open beautiful HTML documentation in your browser
+php artisan app:help --html
+```
+
+The help command provides comprehensive documentation, examples, and interactive guidance for all Laravel Initialization Utility commands.
+
+<div align="center">
+<img src="https://via.placeholder.com/800x450?text=HTML+Documentation+Screenshot" alt="HTML Documentation Screenshot" width="800">
+<p><em>Beautiful HTML documentation with a modern, responsive design</em></p>
+</div>
+
+The HTML documentation provides a more visually appealing way to access the package's documentation, with features like:
+
+- Modern, responsive design that works on all devices
+- Syntax highlighting for code examples
+- Easy navigation with a sidebar menu
+- Detailed command documentation with examples
+- Copy-to-clipboard functionality for code snippets
+
 ### 🔧 Application Initialization
 
 ```bash

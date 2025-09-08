@@ -23,6 +23,7 @@ use Ez_IT_Solutions\AppInit\Commands\AppInit;
 use Ez_IT_Solutions\AppInit\Commands\AppDeploy;
 use Ez_IT_Solutions\AppInit\Commands\AppOptimize;
 use Ez_IT_Solutions\AppInit\Commands\AppPrepare;
+use Ez_IT_Solutions\AppInit\Commands\AppHelpCommand;
 use Ez_IT_Solutions\AppInit\Commands\CheckRequirementsCommand;
 use Ez_IT_Solutions\AppInit\Commands\DatabaseInitCommand;
 
@@ -35,16 +36,24 @@ class AppInitServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Register commands when running in console
         if ($this->app->runningInConsole()) {
             $this->commands([
                 AppInit::class,
                 AppDeploy::class,
                 AppOptimize::class,
                 AppPrepare::class,
+                AppHelpCommand::class,
                 CheckRequirementsCommand::class,
                 DatabaseInitCommand::class,
             ]);
         }
+        
+        // Register views
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'ez-it-solutions');
+        
+        // Register routes
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
     }
 
     /**
