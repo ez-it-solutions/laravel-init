@@ -33,6 +33,110 @@ This utility combines multiple essential functions into a single, cohesive packa
 
 </div>
 
+### 🧙‍♂️ Interactive Setup Wizard
+
+```bash
+# Start the interactive CLI setup wizard
+php artisan app:setup
+
+# Options:
+#   --non-interactive  Run in non-interactive mode with default options
+#   --skip-intro      Skip the introduction screen
+
+# Start the web-based setup wizard
+php artisan app:setup --web
+
+# Or directly launch the web wizard
+php artisan app:web-setup
+
+# Web wizard options:
+#   --port=8000       The port to use for the web server
+#   --host=127.0.0.1  The host to use for the web server
+#   --no-open         Do not open the browser automatically
+```
+
+The setup wizard provides a user-friendly interface for configuring and using various features of the Laravel Initialization Utility, including:
+
+- Viewing README and help documentation
+- Checking application status
+- Configuring application settings
+- Setting up database connections
+- Installing frontend assets
+- Optimizing the application
+- Creating database backups
+- Building configuration files
+
+<div align="center">
+<img src="https://via.placeholder.com/800x450?text=CLI+Setup+Wizard+Screenshot" alt="CLI Setup Wizard Screenshot" width="800">
+<p><em>Interactive CLI setup wizard with easy-to-use menus</em></p>
+</div>
+
+#### Web-Based Setup Wizard
+
+The web-based setup wizard provides a modern, responsive interface for configuring your Laravel application through your browser. It offers all the same functionality as the CLI wizard but with a more visual and intuitive interface.
+
+<div align="center">
+<img src="https://via.placeholder.com/800x450?text=Web+Setup+Wizard+Screenshot" alt="Web Setup Wizard Screenshot" width="800">
+<p><em>Web-based setup wizard with a modern, responsive design</em></p>
+</div>
+
+Features of the web-based wizard:
+
+- **Dashboard**: Overview of all available features
+- **Documentation Viewer**: View README and help documentation directly in the browser
+- **Status Checker**: Check the status of your application's configuration and packages
+- **Configuration Forms**: Easy-to-use forms for configuring your application
+- **Step-by-Step Process**: Guided setup process with progress indicators
+- **Responsive Design**: Works on all devices, from desktop to mobile
+
+### 📊 Application Status
+
+```bash
+# Check the status of Laravel Init packages and configurations
+php artisan app:status
+
+# Options:
+#   --verbose         Display detailed information
+#   --config-only     Only check configuration files
+#   --packages-only   Only check installed packages
+```
+
+The status command provides a comprehensive report of your Laravel application's initialization status, including:
+
+- Configuration files
+- Environment variables
+- Installed Node packages
+- Installed Composer packages
+- System information
+
+### 💾 Database Backup
+
+```bash
+# Create and manage database backups
+php artisan db:backup
+
+# Options:
+#   --tables=         Comma-separated list of tables to backup (default: all tables)
+#   --exclude=        Comma-separated list of tables to exclude from backup
+#   --filename=       Custom filename for the backup
+#   --format=sql      Output format (sql, gz, zip)
+#   --storage=        Storage disk to use (local, s3, etc.)
+#   --path=           Custom path within the storage disk
+#   --no-compress     Do not compress the backup file
+#   --with-data       Include data in the backup (default)
+#   --structure-only  Only backup the database structure, not the data
+#   --notify          Send notification when backup is complete
+#   --force           Force the operation to run when in production
+```
+
+The database backup command provides powerful features for creating and managing database backups, including:
+
+- Selective table backup
+- Multiple compression formats
+- Cloud storage integration
+- Backup retention policies
+- Notification options
+
 ### 📚 Help & Documentation
 
 ```bash
@@ -181,6 +285,20 @@ php artisan app:prepare production
 
 ## ✨ Features
 
+### Interactive Setup Wizard
+- **User-Friendly Interface**: Configure your application with an interactive wizard
+- **Feature Selection**: Pick and choose which features to use and configure
+- **Documentation Viewer**: View README and help documentation directly in the console
+- **Configuration Builder**: Generate configuration files for your selected options
+- **Cross-Platform Support**: Works on Windows, macOS, and Linux
+
+### Application Status
+- **Comprehensive Status Check**: Get a complete overview of your application's status
+- **Configuration Files**: Check for required configuration files
+- **Environment Variables**: Verify environment variables are properly set
+- **Package Detection**: Automatically detect installed Node and Composer packages
+- **System Information**: View PHP, Laravel, Node.js, and server information
+
 ### Application Initialization
 - **Complete Setup**: Initialize your Laravel application with a single command
 - **System Requirements Check**: Verify your environment meets all requirements
@@ -205,8 +323,18 @@ php artisan app:prepare production
 
 ### Database Tools
 - **Database Initialization**: Create and configure databases with proper settings
+- **Database Backup**: Create and manage database backups with various options
 - **MySQL Command Execution**: Run MySQL commands directly from Artisan
 - **Migration and Seeding**: Easily run migrations and seeders
+- **Backup Compression**: Compress backups in various formats (SQL, GZ, ZIP)
+- **Cloud Storage Integration**: Store backups in cloud storage services
+- **Retention Policies**: Automatically manage backup retention
+
+### Frontend Asset Management
+- **TailwindCSS Installation**: Easily install and configure TailwindCSS
+- **Dark Mode Support**: Add dark mode support to your application
+- **Plugin Integration**: Install and configure TailwindCSS plugins
+- **Build Tool Detection**: Automatically detect and configure Vite or Laravel Mix
 
 ### Development Server
 - **Port Auto-Detection**: Automatically finds the first available port
@@ -259,6 +387,16 @@ That's it! The package will automatically register all commands with Laravel thr
        Ez_IT_Solutions\DatabaseTools\DatabaseToolsServiceProvider::class,
    ],
    ```
+
+4. Publish the configuration files (optional):
+
+   ```bash
+   php artisan vendor:publish --tag=ez-it-solutions-config
+   ```
+
+   This will publish the following configuration files:
+   - `config/init.php`: Configuration for initialization settings
+   - `config/database.php`: Enhanced database configuration
 
 ### Compatibility
 
@@ -333,21 +471,51 @@ Create the following directory structure:
 
 ```
 laravel-init/
+├── config/
+│   ├── database.php        # Enhanced database configuration
+│   └── init.php           # Application initialization settings
 ├── src/
 │   ├── Commands/
-│   │   ├── AppCleanup.php
-│   │   ├── AppDeploy.php
-│   │   ├── AppInit.php
-│   │   ├── AppOptimize.php
-│   │   ├── AppPrepare.php
-│   │   ├── AppServeCommand.php
-│   │   ├── CheckRequirementsCommand.php
-│   │   ├── DatabaseInitCommand.php
-│   │   └── MysqlExecCommand.php
-│   ├── AppCleanupServiceProvider.php
-│   ├── AppInitServiceProvider.php
-│   ├── AppServeServiceProvider.php
-│   └── DatabaseToolsServiceProvider.php
+│   │   ├── AppCleanup.php              # Clean up application
+│   │   ├── AppDeploy.php               # Deploy application
+│   │   ├── AppHelpCommand.php          # Help documentation
+│   │   ├── AppInit.php                 # Initialize application
+│   │   ├── AppInstallTailwindCSS.php   # Install TailwindCSS
+│   │   ├── AppOptimize.php             # Optimize application
+│   │   ├── AppPrepare.php              # Prepare application
+│   │   ├── AppServeCommand.php         # Serve application
+│   │   ├── AppSetupCommand.php         # Interactive setup wizard
+│   │   ├── AppWebSetupCommand.php      # Web-based setup wizard
+│   │   ├── CheckRequirementsCommand.php # Check system requirements
+│   │   ├── DatabaseBackupCommand.php    # Backup database
+│   │   ├── DatabaseInitCommand.php      # Initialize database
+│   │   ├── MysqlExecCommand.php         # Execute MySQL commands
+│   │   └── StatusCommand.php            # Check application status
+│   ├── Http/
+│   │   └── Controllers/
+│   │       ├── HelpController.php          # Help documentation controller
+│   │       └── SetupWizardController.php   # Web setup wizard controller
+│   ├── resources/
+│   │   └── views/
+│   │       ├── help/                      # Help documentation views
+│   │       │   ├── index.blade.php
+│   │       │   └── command.blade.php
+│   │       ├── setup/                     # Web setup wizard views
+│   │       │   ├── index.blade.php
+│   │       │   ├── documentation.blade.php
+│   │       │   ├── help.blade.php
+│   │       │   ├── status.blade.php
+│   │       │   ├── configure-app.blade.php
+│   │       │   ├── setup-database.blade.php
+│   │       │   ├── wizard-navigation.js
+│   │       │   └── layout.blade.php
+│   │       └── layout.blade.php           # Main layout template
+│   ├── routes/
+│   │   └── web.php                     # Web routes
+│   ├── AppCleanupServiceProvider.php     # Cleanup service provider
+│   ├── AppInitServiceProvider.php        # Init service provider
+│   ├── AppServeServiceProvider.php       # Serve service provider
+│   └── DatabaseToolsServiceProvider.php  # Database tools provider
 ├── composer.json
 ├── LICENSE
 └── README.md
@@ -736,6 +904,41 @@ This command handles the deployment process of your Laravel application, includi
 </tr>
 </table>
 
+### Frontend Asset Management
+
+<table>
+<tr>
+<td width="60%">
+
+```bash
+php artisan app:install-tailwindcss
+```
+
+This command installs and configures TailwindCSS in your Laravel application with:
+
+- Support for both Vite and Laravel Mix
+- Optional plugins (forms, typography)
+- Dark mode support
+- Automatic detection of package manager
+- Configuration file generation
+
+</td>
+<td>
+
+#### Options
+
+| Option | Description |
+|--------|-------------|
+| `--with-vite` | Configure for Vite (default) |
+| `--with-mix` | Configure for Laravel Mix |
+| `--with-plugins` | Install TailwindCSS plugins |
+| `--dark-mode` | Enable dark mode support |
+| `--force` | Overwrite existing files |
+
+</td>
+</tr>
+</table>
+
 ### Application Optimization
 
 <table>
@@ -838,6 +1041,39 @@ This command provides a comprehensive cleanup utility for your Laravel applicati
 </tr>
 </table>
 
+### Application Status
+
+<table>
+<tr>
+<td width="60%">
+
+```bash
+php artisan app:status
+```
+
+This command provides a comprehensive report of your Laravel application's initialization status, including:
+
+- Configuration files
+- Environment variables
+- Installed Node packages
+- Installed Composer packages
+- System information
+
+</td>
+<td>
+
+#### Options
+
+| Option | Description |
+|--------|-------------|
+| `--verbose` | Display detailed information |
+| `--config-only` | Only check configuration files |
+| `--packages-only` | Only check installed packages |
+
+</td>
+</tr>
+</table>
+
 ### System Requirements Check
 
 <table>
@@ -899,6 +1135,46 @@ This command initializes and configures the database for your Laravel applicatio
 | `--seed` | Seed the database after migrations |
 | `--force` | Force operation in production |
 | `--show-config` | Show database configuration |
+
+</td>
+</tr>
+</table>
+
+### Database Backup
+
+<table>
+<tr>
+<td width="60%">
+
+```bash
+php artisan db:backup
+```
+
+This command creates and manages database backups with powerful features:
+
+- Support for MySQL, PostgreSQL, and SQLite
+- Selective table backup
+- Multiple compression formats (SQL, GZ, ZIP)
+- Cloud storage integration
+- Backup retention policies
+- Notification options
+
+</td>
+<td>
+
+#### Options
+
+| Option | Description |
+|--------|-------------|
+| `--tables=` | Tables to backup (comma-separated) |
+| `--exclude=` | Tables to exclude (comma-separated) |
+| `--format=sql` | Output format (sql, gz, zip) |
+| `--storage=` | Storage disk to use |
+| `--path=` | Custom backup path |
+| `--structure-only` | Only backup structure, not data |
+| `--with-data` | Include data in backup (default) |
+| `--notify` | Send notification when complete |
+| `--force` | Force operation in production |
 
 </td>
 </tr>
