@@ -1,0 +1,38 @@
+{
+    "name": "ez-it-solutions/laravel-init",
+    "description": "A comprehensive Laravel Initialization Utility that combines several functions and features specific to Laravel projects",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ez IT Solutions",
+            "email": "info@ez-it-solutions.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^6.0|^7.0|^8.0|^9.0|^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ez_IT_Solutions\\AppServe\\": "src/",
+            "Ez_IT_Solutions\\AppCleanup\\": "src/",
+            "Ez_IT_Solutions\\AppInit\\": "src/",
+            "Ez_IT_Solutions\\DatabaseTools\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ez_IT_Solutions\\AppServe\\AppServeServiceProvider",
+                "Ez_IT_Solutions\\AppCleanup\\AppCleanupServiceProvider",
+                "Ez_IT_Solutions\\AppInit\\AppInitServiceProvider",
+                "Ez_IT_Solutions\\DatabaseTools\\DatabaseToolsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
