@@ -8,7 +8,7 @@
  * @category    Commands
  * @package     Ez_IT_Solutions\App_Init
  * @author      Chris Hultberg <chrishultberg@ez-it-solutions.com>
- * @website     https://www.Ez-IT-Solutions.com
+ * @see         https://www.Ez-IT-Solutions.com
  * @license     MIT
  * @link        https://github.com/ez-it-solutions/laravel-init
  * @copyright   Copyright (c) 2025 EZ IT Solutions
@@ -373,7 +373,7 @@ class AppHelpCommand extends Command
             '3' => ['name' => 'Maintenance & Development', 'commands' => ['app:cleanup', 'app:serve']],
             '4' => ['name' => 'Database Management', 'commands' => ['db:init', 'mysql:exec']],
             '5' => ['name' => 'Exit Interactive Mode', 'commands' => []],
-        };
+        ];
         
         while (true) {
             $this->line("<fg=yellow;options=bold>What would you like help with?</>");

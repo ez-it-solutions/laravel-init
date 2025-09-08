@@ -9,7 +9,7 @@
  * @category    Commands
  * @package     Ez_IT_Solutions\App_Init
  * @author      Chris Hultberg <chrishultberg@ez-it-solutions.com>
- * @website     https://www.Ez-IT-Solutions.com
+ * @see         https://www.Ez-IT-Solutions.com
  * @license     MIT
  * @link        https://github.com/ez-it-solutions/laravel-init
  * @copyright   Copyright (c) 2025 EZ IT Solutions
